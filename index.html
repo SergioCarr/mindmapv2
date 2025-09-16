@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMap Creator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header with branding and main actions -->
+    <header class="header">
+        <div class="header-left">
+            <h1 class="logo">
+                <i class="fas fa-project-diagram"></i>
+                MindMap Creator
+            </h1>
+        </div>
+        <div class="header-center">
+            <div class="project-title">
+                <input type="text" id="projectTitle" placeholder="Untitled MindMap" class="title-input">
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="btn btn-secondary" id="loadBtn">
+                <i class="fas fa-folder-open"></i>
+                Load
+            </button>
+            <button class="btn btn-primary" id="saveBtn">
+                <i class="fas fa-save"></i>
+                Save
+            </button>
+        </div>
+    </header>
+
+    <!-- Toolbar with creation and editing tools -->
+    <div class="toolbar">
+        <div class="tool-group">
+            <button class="tool-btn active" id="selectTool" title="Select Tool">
+                <i class="fas fa-mouse-pointer"></i>
+            </button>
+            <button class="tool-btn" id="nodeTool" title="Add Node">
+                <i class="fas fa-circle"></i>
+            </button>
+            <button class="tool-btn" id="connectionTool" title="Connect Nodes">
+                <i class="fas fa-link"></i>
+            </button>
+        </div>
+        
+        <div class="tool-separator"></div>
+        
+        <div class="tool-group">
+            <button class="tool-btn" id="deleteBtn" title="Delete Selected">
+                <i class="fas fa-trash"></i>
+            </button>
+            <button class="tool-btn" id="clearBtn" title="Clear All">
+                <i class="fas fa-eraser"></i>
+            </button>
+        </div>
+        
+        <div class="tool-separator"></div>
+        
+        <div class="tool-group">
+            <button class="tool-btn" id="zoomInBtn" title="Zoom In">
+                <i class="fas fa-search-plus"></i>
+            </button>
+            <button class="tool-btn" id="zoomOutBtn" title="Zoom Out">
+                <i class="fas fa-search-minus"></i>
+            </button>
+            <button class="tool-btn" id="resetZoomBtn" title="Reset Zoom">
+                <i class="fas fa-expand-arrows-alt"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main canvas area for mindmap -->
+    <div class="canvas-container">
+        <svg id="mindmapCanvas" class="mindmap-canvas">
+            <!-- Connections will be drawn here -->
+            <g id="connectionsLayer"></g>
+            <!-- Nodes will be positioned here -->
+            <g id="nodesLayer"></g>
+        </svg>
+        
+        <!-- Overlay for temporary connection line -->
+        <div id="connectionOverlay" class="connection-overlay"></div>
+    </div>
+
+    <!-- Node editing modal -->
+    <div id="nodeEditModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Node</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label for="nodeText">Node Text:</label>
+                <textarea id="nodeText" placeholder="Enter node text..." rows="3"></textarea>
+                
+                <label for="nodeColor">Node Color:</label>
+                <div class="color-picker">
+                    <input type="color" id="nodeColor" value="#4A90E2">
+                    <div class="color-presets" id="nodeColorPresets">
+                        <div class="color-preset" data-color="#4A90E2" style="background: #4A90E2;"></div>
+                        <div class="color-preset" data-color="#7ED321" style="background: #7ED321;"></div>
+                        <div class="color-preset" data-color="#F5A623" style="background: #F5A623;"></div>
+                        <div class="color-preset" data-color="#D0021B" style="background: #D0021B;"></div>
+                        <div class="color-preset" data-color="#9013FE" style="background: #9013FE;"></div>
+                        <div class="color-preset" data-color="#50E3C2" style="background: #50E3C2;"></div>
+                    </div>
+                </div>
+                
+                <label for="textColor">Text Color:</label>
+                <div class="color-picker">
+                    <input type="color" id="textColor" value="#FFFFFF">
+                    <div class="color-presets" id="textColorPresets">
+                        <div class="color-preset" data-color="#FFFFFF" style="background: #FFFFFF; border: 1px solid #ccc;"></div>
+                        <div class="color-preset" data-color="#000000" style="background: #000000;"></div>
+                        <div class="color-preset" data-color="#333333" style="background: #333333;"></div>
+                        <div class="color-preset" data-color="#666666" style="background: #666666;"></div>
+                        <div class="color-preset" data-color="#999999" style="background: #999999;"></div>
+                        <div class="color-preset" data-color="#CCCCCC" style="background: #CCCCCC;"></div>
+                    </div>
+                </div>
+                
+                <label for="nodeShape">Node Shape:</label>
+                <div class="shape-selector">
+                    <div class="shape-option" data-shape="circle">
+                        <div class="shape-preview circle-preview"></div>
+                        <span>Circle</span>
+                    </div>
+                    <div class="shape-option" data-shape="square">
+                        <div class="shape-preview square-preview"></div>
+                        <span>Square</span>
+                    </div>
+                    <div class="shape-option" data-shape="rectangle">
+                        <div class="shape-preview rectangle-preview"></div>
+                        <span>Rectangle</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelEdit">Cancel</button>
+                <button class="btn btn-primary" id="saveEdit">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save/Load modal -->
+    <div id="saveLoadModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="saveLoadTitle">Save MindMap</h3>
+                <button class="modal-close" id="closeSaveLoadModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="saveSection">
+                    <label for="saveFileName">File Name:</label>
+                    <input type="text" id="saveFileName" placeholder="My MindMap">
+                    <div class="saved-files" id="savedFilesList"></div>
+                </div>
+                <div id="loadSection" style="display: none;">
+                    <p>Select a saved mindmap to load:</p>
+                    <div class="saved-files" id="loadFilesList"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelSaveLoad">Cancel</button>
+                <button class="btn btn-primary" id="confirmSaveLoad">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instructions panel -->
+    <div class="instructions-panel" id="instructionsPanel">
+        <div class="instructions-header">
+            <h4>How to use MindMap Creator</h4>
+            <button class="close-instructions" id="closeInstructions">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="instructions-content">
+            <div class="instruction-item">
+                <i class="fas fa-circle"></i>
+                <span>Click the <strong>Add Node</strong> tool and click anywhere to create a new node</span>
+            </div>
+            <div class="instruction-item">
+                <i class="fas fa-link"></i>
+                <span>Use <strong>Connect Nodes</strong> tool to link nodes together</span>
+            </div>
+            <div class="instruction-item">
+                <i class="fas fa-edit"></i>
+                <span>Double-click any node to edit its text and color</span>
+            </div>
+            <div class="instruction-item">
+                <i class="fas fa-arrows-alt"></i>
+                <span>Drag nodes to reposition them on the canvas</span>
+            </div>
+            <div class="instruction-item">
+                <i class="fas fa-save"></i>
+                <span>Use <strong>Save</strong> to store your mindmap locally</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="mindmap.js"></script>
+</body>
+</html>

@@ -9,7 +9,255 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header with branding and main actions -->
+    <!-- Landing Page -->
+    <div id="landingPage" class="landing-page">
+        <!-- Landing Header -->
+        <header class="landing-header">
+            <div class="landing-nav">
+                <div class="landing-logo">
+                    <i class="fas fa-project-diagram"></i>
+                    MindMap Creator
+                </div>
+                <div class="landing-nav-links">
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#about" class="nav-link">About Us</a>
+                    <a href="#pricing" class="nav-link">Pricing</a>
+                    <button class="btn btn-primary" id="startCreatingBtn">Start Creating</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Create Beautiful Mind Maps</h1>
+                <p class="hero-subtitle">Transform your ideas into visual masterpieces with our intuitive mind mapping tool. Organize thoughts, plan projects, and unleash your creativity.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-large" id="heroStartBtn">Start Free Trial</button>
+                    <button class="btn btn-secondary btn-large" id="heroLearnMoreBtn">Learn More</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Mind mapping visualization with connected ideas and creative thinking" 
+                         class="hero-image">
+                    <div class="image-overlay">
+                        <div class="overlay-text">
+                            <i class="fas fa-play-circle"></i>
+                            <span>See it in action</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <div class="section-container">
+                <h2 class="section-title">Powerful Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>Customizable Nodes</h3>
+                        <p>Choose from multiple shapes, colors, and styles to make your mind maps uniquely yours.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3>Smart Connections</h3>
+                        <p>Easily connect ideas with intuitive linking tools and visual connection lines.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-save"></i>
+                        </div>
+                        <h3>Save & Load</h3>
+                        <p>Save your work locally and load your mind maps whenever you need them.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Responsive Design</h3>
+                        <p>Works seamlessly across all devices - desktop, tablet, and mobile.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="about-section">
+            <div class="section-container">
+                <h2 class="section-title">Meet Our Team</h2>
+                <p class="section-subtitle">The talented individuals behind MindMap Creator</p>
+                <div class="team-grid">
+                    <!-- Brian Sifuentes -->
+                    <div class="team-member">
+                        <div class="member-info">
+                            <div class="member-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h3 class="member-name">Brian Sifuentes</h3>
+                            <p class="member-role">Designer & Front-End Developer</p>
+                            <p class="member-description">Brian brings creative vision to life with beautiful, intuitive user interfaces. His expertise in modern design principles and front-end technologies ensures our users have an exceptional experience.</p>
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Janet Sanchez -->
+                    <div class="team-member">
+                        <div class="member-info">
+                            <div class="member-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h3 class="member-name">Janet Sanchez</h3>
+                            <p class="member-role">Back-End Developer</p>
+                            <p class="member-description">Janet architected the robust backend infrastructure that powers MindMap Creator. Her expertise in server-side technologies and API development ensures seamless performance and scalability.</p>
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sergio Carreon -->
+                    <div class="team-member">
+                        <div class="member-info">
+                            <div class="member-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3 class="member-name">Sergio Carreon</h3>
+                            <p class="member-role">Database Manager</p>
+                            <p class="member-description">Sergio manages our data infrastructure with precision and expertise. His deep knowledge of database optimization and security ensures your mind maps are stored safely and accessed efficiently.</p>
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="pricing-section">
+            <div class="section-container">
+                <h2 class="section-title">Choose Your Plan</h2>
+                <p class="section-subtitle">Start with our free trial or unlock premium features with our paid plan</p>
+                <div class="pricing-grid">
+                    <!-- Free Trial Plan -->
+                    <div class="pricing-card free-plan">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Free Trial</h3>
+                            <div class="plan-price">
+                                <span class="price">$0</span>
+                                <span class="period">/ 14 days</span>
+                            </div>
+                        </div>
+                        <div class="plan-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Create up to 10 mind maps</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>All customization options</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Local storage & export</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>All core features</span>
+                            </div>
+                            <div class="feature-item disabled">
+                                <i class="fas fa-times"></i>
+                                <span>Cloud storage</span>
+                            </div>
+                            <div class="feature-item disabled">
+                                <i class="fas fa-times"></i>
+                                <span>Cross-device sync</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary btn-plan" id="freeTrialBtn">Start Free Trial</button>
+                    </div>
+
+                    <!-- Paid Plan -->
+                    <div class="pricing-card paid-plan featured">
+                        <div class="plan-badge">Most Popular</div>
+                        <div class="plan-header">
+                            <h3 class="plan-name">Pro Plan</h3>
+                            <div class="plan-price">
+                                <span class="price">$5</span>
+                                <span class="period">/ month</span>
+                            </div>
+                        </div>
+                        <div class="plan-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Everything in Free Trial</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Unlimited cloud storage</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Cross-device synchronization</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Automatic backups</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Priority support</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Advanced export options</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-plan" id="proPlanBtn">Get Pro Plan</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="landing-footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-project-diagram"></i>
+                    MindMap Creator
+                </div>
+                <p>&copy; 2024 MindMap Creator. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Main Application (initially hidden) -->
+    <div id="mindmapApp" class="mindmap-app" style="display: none;">
+        <!-- Back to Landing Button -->
+        <div class="back-to-landing">
+            <button class="btn btn-secondary" id="backToLandingBtn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </button>
+        </div>
+        
+        <!-- Header with branding and main actions -->
     <header class="header">
         <div class="header-left">
             <h1 class="logo">
@@ -207,6 +455,9 @@
             </div>
         </div>
     </div>
+
+
+    </div> <!-- End of mindmapApp -->
 
     <script src="mindmap.js"></script>
 </body>

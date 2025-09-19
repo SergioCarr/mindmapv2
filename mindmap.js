@@ -1045,6 +1045,7 @@ class MindMapCreator {
         document.getElementById('saveLoadModal').classList.remove('show');
     }
 
+
     /**
      * Handle save/load action
      */
@@ -1306,9 +1307,103 @@ class MindMapCreator {
     }
 }
 
+// Landing Page Controller
+class LandingPageController {
+    constructor() {
+        this.setupLandingPageEvents();
+    }
+
+    setupLandingPageEvents() {
+        // Navigation buttons to start the app
+        const startButtons = [
+            'startCreatingBtn',
+            'heroStartBtn', 
+            'freeTrialBtn'
+        ];
+
+        startButtons.forEach(buttonId => {
+            const button = document.getElementById(buttonId);
+            if (button) {
+                button.addEventListener('click', () => this.startMindmapApp());
+            }
+        });
+
+        // Pro plan button
+        const proPlanBtn = document.getElementById('proPlanBtn');
+        if (proPlanBtn) {
+            proPlanBtn.addEventListener('click', () => this.handleProPlan());
+        }
+
+        // Learn more button - scroll to features
+        const learnMoreBtn = document.getElementById('heroLearnMoreBtn');
+        if (learnMoreBtn) {
+            learnMoreBtn.addEventListener('click', () => this.scrollToFeatures());
+        }
+
+        // Back to landing button
+        const backToLandingBtn = document.getElementById('backToLandingBtn');
+        if (backToLandingBtn) {
+            backToLandingBtn.addEventListener('click', () => this.showLandingPage());
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Make hero image overlay clickable to start app
+        const imageOverlay = document.querySelector('.image-overlay');
+        if (imageOverlay) {
+            imageOverlay.addEventListener('click', () => this.startMindmapApp());
+        }
+    }
+
+    startMindmapApp() {
+        document.getElementById('landingPage').style.display = 'none';
+        document.getElementById('mindmapApp').style.display = 'flex';
+        
+        // Initialize mindmap if not already done
+        if (!window.mindmap) {
+            window.mindmap = new MindMapCreator();
+        }
+    }
+
+    handleProPlan() {
+        // For now, just show an alert. In a real app, this would redirect to payment
+        alert('Pro Plan coming soon! For now, enjoy the free trial with all features.');
+        this.startMindmapApp();
+    }
+
+    scrollToFeatures() {
+        const featuresSection = document.getElementById('features');
+        if (featuresSection) {
+            featuresSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    showLandingPage() {
+        document.getElementById('mindmapApp').style.display = 'none';
+        document.getElementById('landingPage').style.display = 'block';
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
 // Initialize the application when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    window.mindmap = new MindMapCreator();
+    // Initialize landing page controller
+    window.landingController = new LandingPageController();
+    
+    // Don't initialize mindmap automatically - wait for user to click start
+    // window.mindmap = new MindMapCreator();
 });
 
 // Add CSS animations for messages
